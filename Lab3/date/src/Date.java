@@ -116,9 +116,7 @@ public class Date {
 	 * returns true if month has 30 days.
 	 */
 	private boolean isThirtyDayMonth() {
-		if (this.month == 4 || this.month == 6 || this.month == 9 || this.month == 11)
-			return true;
-		else return false;
+		return this.month == 4 || this.month == 6 || this.month == 9 || this.month == 11;
 	}
 
 	/**
