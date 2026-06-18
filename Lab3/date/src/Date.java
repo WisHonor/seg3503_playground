@@ -5,6 +5,8 @@ public class Date {
 	private int month;
 	private int day;
 
+	private static final int FEBRUARY = 2;
+
 	/* String correspondent used for displaying months */
 	private static final String[] MONTH_NAMES = {
 		"January", "February", "March",
@@ -52,10 +54,10 @@ public class Date {
 		if (isThirtyDayMonth() && day > 30) {
 			throw new IllegalArgumentException("day must less than 30 for month " + MONTH_NAMES[month-1]);
 		}
-		if (this.month == 2 && isLeapYear() && day > 29) {
+		if (this.month == FEBRUARY && isLeapYear() && day > 29) {
 			throw new IllegalArgumentException("day must less than 29 for month " + MONTH_NAMES[month-1] + " on a leap year.");
 		}
-		if (this.month == 2 && !isLeapYear() && day > 28) {
+		if (this.month == FEBRUARY && !isLeapYear() && day > 28) {
 			throw new IllegalArgumentException("day must less than 28 for month " + MONTH_NAMES[month-1] + " on a non leap year.");
 		}
 		this.day = day;
@@ -107,7 +109,7 @@ public class Date {
 	private boolean isEndOfMonth() {
 		boolean leap = isLeapYear();
 		return day == 31 || (day == 30 && isThirtyDayMonth()) ||
-				(this.month == 2 && ((day == 29 && leap) || (day == 28 && !leap)));
+				(this.month == FEBRUARY && ((day == 29 && leap) || (day == 28 && !leap)));
 	}
 
 	/**
