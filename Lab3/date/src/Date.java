@@ -6,7 +6,7 @@ public class Date {
 	private int day;
 
 	/* String correspondent used for displaying months */
-	String[] monthNames = {
+	private static final String[] MONTH_NAMES = {
 		"January", "February", "March",
 		"April", "May", "June",
 		"July", "August", "September",
@@ -50,13 +50,13 @@ public class Date {
 			throw new IllegalArgumentException("day must less or equal to 31.");
 		}
 		if (isThirtyDayMonth() && day > 30) {
-			throw new IllegalArgumentException("day must less than 30 for month " + monthNames[month-1]);
+			throw new IllegalArgumentException("day must less than 30 for month " + MONTH_NAMES[month-1]);
 		}
 		if (this.month == 2 && isLeapYear() && day > 29) {
-			throw new IllegalArgumentException("day must less than 29 for month " + monthNames[month-1] + " on a leap year.");
+			throw new IllegalArgumentException("day must less than 29 for month " + MONTH_NAMES[month-1] + " on a leap year.");
 		}
 		if (this.month == 2 && !isLeapYear() && day > 28) {
-			throw new IllegalArgumentException("day must less than 28 for month " + monthNames[month-1] + " on a non leap year.");
+			throw new IllegalArgumentException("day must less than 28 for month " + MONTH_NAMES[month-1] + " on a non leap year.");
 		}
 		this.day = day;
 	}
@@ -129,7 +129,7 @@ public class Date {
 	}
 
 	public String toString() {
-		return year + "/" + monthNames[month-1] + "/" + day;
+		return year + "/" + MONTH_NAMES[month-1] + "/" + day;
 	}
 
 	public boolean equals(Object obj) {
