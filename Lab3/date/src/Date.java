@@ -55,11 +55,11 @@ public class Date {
 		if (isThirtyDayMonth() && day > 30) {
 			throw new IllegalArgumentException("day must less than 30 for month " + MONTH_NAMES[month-1]);
 		}
-		if (this.month == FEBRUARY && isLeapYear() && day > 29) {
-			throw new IllegalArgumentException("day must less than 29 for month " + MONTH_NAMES[month-1] + " on a leap year.");
-		}
-		if (this.month == FEBRUARY && !isLeapYear() && day > 28) {
-			throw new IllegalArgumentException("day must less than 28 for month " + MONTH_NAMES[month-1] + " on a non leap year.");
+		if (this.month == FEBRUARY) {
+			int febMax = isLeapYear() ? 29 : 28;
+			if (day > febMax) {
+				throw new IllegalArgumentException("day must less than " + febMax + " for month " + MONTH_NAMES[month-1]);
+			}
 		}
 		this.day = day;
 	}
