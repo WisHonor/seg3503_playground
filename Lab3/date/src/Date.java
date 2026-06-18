@@ -6,6 +6,7 @@ public class Date {
 	private int day;
 
 	private static final int FEBRUARY = 2;
+	private static final int DECEMBER = 12;
 
 	/* String correspondent used for displaying months */
 	private static final String[] MONTH_NAMES = {
@@ -92,7 +93,7 @@ public class Date {
 		int nextYear = year, nextMonth = month, nextDay = day + 1;
 		if (isEndOfMonth()) {
 			nextDay = 1;
-			if (month == 12) {
+			if (month == DECEMBER) {
 				nextYear++;
 				nextMonth = 1;
 			} else {
