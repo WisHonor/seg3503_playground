@@ -22,6 +22,16 @@ defmodule TicTest do
       assert board.cells == List.duplicate("_", 4)
       assert Tic.to_string(board) == "_|_\n_|_"
     end
+
+    test "rejects invalid dimensions" do
+      assert_raise ArgumentError, "board dimensions must be positive integers", fn ->
+        Tic.new(0, 3)
+      end
+
+      assert_raise ArgumentError, "board dimensions must be positive integers", fn ->
+        Tic.new(3, 0)
+      end
+    end
   end
 
   describe "size/1" do
@@ -144,6 +154,26 @@ defmodule TicTest do
       """
 
       assert Tic.to_string(board) == clean(expected)
+    end
+
+    test "rejects moves outside the board" do
+      board = Tic.new()
+
+      assert_raise ArgumentError, "move is outside the board", fn ->
+        Tic.place(board, -1)
+      end
+
+      assert_raise ArgumentError, "move is outside the board", fn ->
+        Tic.place(board, 9)
+      end
+    end
+
+    test "rejects moves on occupied cells" do
+      board = Tic.new() |> Tic.place(0)
+
+      assert_raise ArgumentError, "cell is already occupied", fn ->
+        Tic.place(board, 0)
+      end
     end
   end
 end
