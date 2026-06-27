@@ -3,27 +3,64 @@ defmodule Tic do
   Implementing a tic tac toe game.
   """
 
-  defstruct rows: 3, cols: 3
+  @empty "_"
+
+  defstruct rows: 3, cols: 3, cells: nil, turn: "X"
+
+  def new(rows \\ 3, cols \\ 3) do
+    %Tic{
+      rows: rows,
+      cols: cols,
+      cells: List.duplicate(@empty, rows * cols),
+      turn: "X"
+    }
+  end
 
   def size(%Tic{rows: r, cols: w}), do: r * w
+
+  def place(%Tic{} = board, index) do
+    board = with_cells(board)
+
+    %{
+      board
+      | cells: List.replace_at(board.cells, index, board.turn),
+        turn: next_turn(board.turn)
+    }
+  end
 
   @doc """
   Create a string to represent the board
   """
-  def to_string(%Tic{rows: n, cols: m}, opts \\ []) do
-    0..(n - 1)
-    |> Enum.map(fn row_index -> to_string_column(row_index, m, opts[:show_index]) end)
+  def to_string(%Tic{} = board, opts \\ []) do
+    board = with_cells(board)
+
+    0..(board.rows - 1)
+    |> Enum.map(fn row_index -> to_string_column(board, row_index, opts[:show_index]) end)
     |> Enum.join("\n")
   end
 
-  defp to_string_column(row_index, num_columns, show_index) do
-    0..(num_columns - 1)
+  defp to_string_column(board, row_index, show_index) do
+    0..(board.cols - 1)
     |> Enum.map(fn col_index ->
-      to_string_cell(row_index * num_columns + col_index, show_index)
+      to_string_cell(board, row_index * board.cols + col_index, show_index)
     end)
     |> Enum.join("|")
   end
 
-  defp to_string_cell(index, true), do: "#{index}"
-  defp to_string_cell(_, _), do: "_"
+  defp to_string_cell(board, index, true) do
+    case Enum.at(board.cells, index) do
+      @empty -> Integer.to_string(index)
+      mark -> mark
+    end
+  end
+
+  defp to_string_cell(board, index, _), do: Enum.at(board.cells, index)
+
+  defp with_cells(%Tic{cells: nil} = board), do: %{board | cells: empty_cells(board)}
+  defp with_cells(%Tic{} = board), do: board
+
+  defp empty_cells(%Tic{} = board), do: List.duplicate(@empty, size(board))
+
+  defp next_turn("X"), do: "O"
+  defp next_turn("O"), do: "X"
 end
