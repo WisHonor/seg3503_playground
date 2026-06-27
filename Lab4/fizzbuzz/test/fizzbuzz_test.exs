@@ -25,6 +25,16 @@ defmodule FizzbuzzTest do
   end
 
   describe "fizzbuzz/1" do
+    test "raises when the number is not positive" do
+      assert_raise ArgumentError, "number must be a positive integer", fn ->
+        Fizzbuzz.fizzbuzz(0)
+      end
+
+      assert_raise ArgumentError, "number must be a positive integer", fn ->
+        Fizzbuzz.fizzbuzz(-3)
+      end
+    end
+
     test "1 returns 1" do
       assert 1 == Fizzbuzz.fizzbuzz(1)
     end
