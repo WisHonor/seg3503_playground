@@ -33,6 +33,29 @@ defmodule Tic do
     }
   end
 
+  def winner(%Tic{} = board) do
+    board
+    |> with_cells()
+    |> winning_lines()
+    |> Enum.find_value(&winning_mark/1)
+  end
+
+  def draw?(%Tic{} = board) do
+    board = with_cells(board)
+
+    is_nil(winner(board)) and Enum.all?(board.cells, fn cell -> cell != @empty end)
+  end
+
+  def status(%Tic{} = board) do
+    case winner(board) do
+      nil ->
+        if draw?(board), do: :draw, else: :playing
+
+      mark ->
+        {:winner, mark}
+    end
+  end
+
   @doc """
   Create a string to represent the board
   """
@@ -78,6 +101,41 @@ defmodule Tic do
   defp occupied?(board, index), do: cell_at(board, index) != @empty
 
   defp mark_cell(board, index), do: List.replace_at(board.cells, index, board.turn)
+
+  defp winning_lines(board), do: row_lines(board) ++ column_lines(board) ++ diagonal_lines(board)
+
+  defp row_lines(board) do
+    0..(board.rows - 1)
+    |> Enum.map(fn row_index ->
+      0..(board.cols - 1)
+      |> Enum.map(fn col_index -> cell_at(board, row_index * board.cols + col_index) end)
+    end)
+  end
+
+  defp column_lines(board) do
+    0..(board.cols - 1)
+    |> Enum.map(fn col_index ->
+      0..(board.rows - 1)
+      |> Enum.map(fn row_index -> cell_at(board, row_index * board.cols + col_index) end)
+    end)
+  end
+
+  defp diagonal_lines(%Tic{rows: size, cols: size} = board) do
+    [
+      Enum.map(0..(size - 1), fn index -> cell_at(board, index * size + index) end),
+      Enum.map(0..(size - 1), fn index -> cell_at(board, index * size + (size - index - 1)) end)
+    ]
+  end
+
+  defp diagonal_lines(_), do: []
+
+  defp winning_mark(line) do
+    case Enum.uniq(line) do
+      [@empty] -> nil
+      [mark] -> mark
+      _ -> nil
+    end
+  end
 
   defp with_cells(%Tic{cells: nil} = board), do: %{board | cells: empty_cells(board)}
   defp with_cells(%Tic{} = board), do: board
