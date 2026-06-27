@@ -32,4 +32,24 @@ public class Tic {
 		board[row][col] = turn;
 		turn = turn.equals("X") ? "O" : "X";
 	}
+
+	public String winner() {
+		for (int i = 0; i < rows; i++) {
+			String first = board[i][0];
+			if (first.equals("_")) {
+				continue;
+			}
+			boolean rowComplete = true;
+			for (int j = 1; j < cols; j++) {
+				if (!board[i][j].equals(first)) {
+					rowComplete = false;
+					break;
+				}
+			}
+			if (rowComplete) {
+				return first;
+			}
+		}
+		return "_";
+	}
 }
