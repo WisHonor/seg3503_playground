@@ -24,21 +24,13 @@ defmodule Tic do
 
   def place(%Tic{} = board, index) do
     board = with_cells(board)
+    validate_move!(board, index)
 
-    cond do
-      not is_integer(index) or index < 0 or index >= size(board) ->
-        raise ArgumentError, "move is outside the board"
-
-      cell_at(board, index) != @empty ->
-        raise ArgumentError, "cell is already occupied"
-
-      true ->
-        %{
-          board
-          | cells: List.replace_at(board.cells, index, board.turn),
-            turn: next_turn(board.turn)
-        }
-    end
+    %{
+      board
+      | cells: mark_cell(board, index),
+        turn: next_turn(board.turn)
+    }
   end
 
   @doc """
@@ -70,6 +62,22 @@ defmodule Tic do
   defp to_string_cell(board, index, _), do: cell_at(board, index)
 
   defp cell_at(board, index), do: Enum.at(board.cells, index)
+
+  defp validate_move!(board, index) do
+    cond do
+      outside_board?(board, index) -> raise ArgumentError, "move is outside the board"
+      occupied?(board, index) -> raise ArgumentError, "cell is already occupied"
+      true -> :ok
+    end
+  end
+
+  defp outside_board?(board, index) do
+    not is_integer(index) or index < 0 or index >= size(board)
+  end
+
+  defp occupied?(board, index), do: cell_at(board, index) != @empty
+
+  defp mark_cell(board, index), do: List.replace_at(board.cells, index, board.turn)
 
   defp with_cells(%Tic{cells: nil} = board), do: %{board | cells: empty_cells(board)}
   defp with_cells(%Tic{} = board), do: board
