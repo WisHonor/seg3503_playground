@@ -7,7 +7,9 @@ defmodule Tic do
 
   defstruct rows: 3, cols: 3, cells: nil, turn: "X"
 
-  def new(rows \\ 3, cols \\ 3) do
+  def new(rows \\ 3, cols \\ 3)
+
+  def new(rows, cols) when is_integer(rows) and rows > 0 and is_integer(cols) and cols > 0 do
     %Tic{
       rows: rows,
       cols: cols,
@@ -16,16 +18,27 @@ defmodule Tic do
     }
   end
 
+  def new(_, _), do: raise(ArgumentError, "board dimensions must be positive integers")
+
   def size(%Tic{rows: r, cols: w}), do: r * w
 
   def place(%Tic{} = board, index) do
     board = with_cells(board)
 
-    %{
-      board
-      | cells: List.replace_at(board.cells, index, board.turn),
-        turn: next_turn(board.turn)
-    }
+    cond do
+      not is_integer(index) or index < 0 or index >= size(board) ->
+        raise ArgumentError, "move is outside the board"
+
+      cell_at(board, index) != @empty ->
+        raise ArgumentError, "cell is already occupied"
+
+      true ->
+        %{
+          board
+          | cells: List.replace_at(board.cells, index, board.turn),
+            turn: next_turn(board.turn)
+        }
+    end
   end
 
   @doc """
