@@ -35,11 +35,11 @@ defmodule Tic do
     board = with_cells(board)
 
     0..(board.rows - 1)
-    |> Enum.map(fn row_index -> to_string_column(board, row_index, opts[:show_index]) end)
+    |> Enum.map(fn row_index -> to_string_row(board, row_index, opts[:show_index]) end)
     |> Enum.join("\n")
   end
 
-  defp to_string_column(board, row_index, show_index) do
+  defp to_string_row(board, row_index, show_index) do
     0..(board.cols - 1)
     |> Enum.map(fn col_index ->
       to_string_cell(board, row_index * board.cols + col_index, show_index)
@@ -48,13 +48,15 @@ defmodule Tic do
   end
 
   defp to_string_cell(board, index, true) do
-    case Enum.at(board.cells, index) do
+    case cell_at(board, index) do
       @empty -> Integer.to_string(index)
       mark -> mark
     end
   end
 
-  defp to_string_cell(board, index, _), do: Enum.at(board.cells, index)
+  defp to_string_cell(board, index, _), do: cell_at(board, index)
+
+  defp cell_at(board, index), do: Enum.at(board.cells, index)
 
   defp with_cells(%Tic{cells: nil} = board), do: %{board | cells: empty_cells(board)}
   defp with_cells(%Tic{} = board), do: board
