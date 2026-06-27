@@ -4,6 +4,26 @@ defmodule TicTest do
 
   def clean(expected), do: String.trim(expected)
 
+  describe "new/2" do
+    test "creates an empty board with X to play first" do
+      board = Tic.new()
+
+      assert board.rows == 3
+      assert board.cols == 3
+      assert board.cells == List.duplicate("_", 9)
+      assert board.turn == "X"
+    end
+
+    test "creates a custom empty board" do
+      board = Tic.new(2, 2)
+
+      assert board.rows == 2
+      assert board.cols == 2
+      assert board.cells == List.duplicate("_", 4)
+      assert Tic.to_string(board) == "_|_\n_|_"
+    end
+  end
+
   describe "size/1" do
     test "default 3x3 = 9" do
       assert Tic.size(%Tic{}) == 9
@@ -93,6 +113,37 @@ defmodule TicTest do
       """
 
       assert Tic.to_string(%Tic{rows: 3, cols: 4}, show_index: true) == clean(expected)
+    end
+  end
+
+  describe "place/2" do
+    test "marks the current player and changes the turn" do
+      board = Tic.new()
+
+      board = Tic.place(board, 0)
+
+      assert Enum.at(board.cells, 0) == "X"
+      assert board.turn == "O"
+
+      board = Tic.place(board, 4)
+
+      assert Enum.at(board.cells, 4) == "O"
+      assert board.turn == "X"
+    end
+
+    test "shows placed marks when rendering the board" do
+      board =
+        Tic.new()
+        |> Tic.place(0)
+        |> Tic.place(4)
+
+      expected = """
+      X|_|_
+      _|O|_
+      _|_|_
+      """
+
+      assert Tic.to_string(board) == clean(expected)
     end
   end
 end
