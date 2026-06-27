@@ -21,7 +21,12 @@ public class Tic {
 		return board[row][col];
 	}
 
+	public String currentPlayer() {
+		return turn;
+	}
+
 	public void place(int row, int col) {
 		board[row][col] = turn;
+		turn = turn.equals("X") ? "O" : "X";
 	}
 }
