@@ -20,4 +20,8 @@ public class Tic {
 	public String cellAt(int row, int col) {
 		return board[row][col];
 	}
+
+	public void place(int row, int col) {
+		board[row][col] = turn;
+	}
 }
