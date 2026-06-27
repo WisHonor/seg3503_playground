@@ -176,4 +176,58 @@ defmodule TicTest do
       end
     end
   end
+
+  describe "game status" do
+    test "detects a row winner" do
+      board =
+        Tic.new()
+        |> Tic.place(0)
+        |> Tic.place(3)
+        |> Tic.place(1)
+        |> Tic.place(4)
+        |> Tic.place(2)
+
+      assert Tic.winner(board) == "X"
+      assert Tic.status(board) == {:winner, "X"}
+    end
+
+    test "detects a diagonal winner" do
+      board =
+        Tic.new()
+        |> Tic.place(0)
+        |> Tic.place(1)
+        |> Tic.place(4)
+        |> Tic.place(2)
+        |> Tic.place(8)
+
+      assert Tic.winner(board) == "X"
+      assert Tic.status(board) == {:winner, "X"}
+    end
+
+    test "detects a draw" do
+      board =
+        Tic.new()
+        |> Tic.place(0)
+        |> Tic.place(1)
+        |> Tic.place(2)
+        |> Tic.place(4)
+        |> Tic.place(3)
+        |> Tic.place(5)
+        |> Tic.place(7)
+        |> Tic.place(6)
+        |> Tic.place(8)
+
+      assert Tic.winner(board) == nil
+      assert Tic.draw?(board)
+      assert Tic.status(board) == :draw
+    end
+
+    test "detects a game still in progress" do
+      board = Tic.new() |> Tic.place(0)
+
+      assert Tic.winner(board) == nil
+      refute Tic.draw?(board)
+      assert Tic.status(board) == :playing
+    end
+  end
 end
