@@ -42,4 +42,23 @@ class TicTest {
 		assertEquals("O", board.currentPlayer());
 	}
 
+	@Test
+	void detectsRowWin() {
+		Tic board = new Tic(3, 3);
+		board.place(0, 0); // X
+		board.place(1, 0); // O
+		board.place(0, 1); // X
+		board.place(1, 1); // O
+		board.place(0, 2); // X completes the top row
+		assertEquals("X", board.winner());
+	}
+
+	@Test
+	void noWinnerYetReturnsUnderscore() {
+		Tic board = new Tic(3, 3);
+		board.place(0, 0); // X
+		board.place(1, 1); // O
+		assertEquals("_", board.winner());
+	}
+
 }
