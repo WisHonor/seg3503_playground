@@ -9,6 +9,20 @@ defmodule FizzbuzzTest do
   end
 
   describe "fizzbuzz/2" do
+    test "raises when the range bounds are invalid" do
+      assert_raise ArgumentError, "range must use positive integers with start <= finish", fn ->
+        Fizzbuzz.fizzbuzz(0, 3)
+      end
+
+      assert_raise ArgumentError, "range must use positive integers with start <= finish", fn ->
+        Fizzbuzz.fizzbuzz(1, 0)
+      end
+
+      assert_raise ArgumentError, "range must use positive integers with start <= finish", fn ->
+        Fizzbuzz.fizzbuzz(5, 1)
+      end
+    end
+
 
     test "1 fizzbuzz" do
       assert [1] == Fizzbuzz.fizzbuzz(1,1)
