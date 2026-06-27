@@ -16,4 +16,8 @@ public class Tic {
 			}
 		}
 	}
+
+	public String cellAt(int row, int col) {
+		return board[row][col];
+	}
 }
