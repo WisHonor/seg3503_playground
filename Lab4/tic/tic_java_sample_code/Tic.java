@@ -35,21 +35,25 @@ public class Tic {
 
 	public String winner() {
 		for (int i = 0; i < rows; i++) {
-			String first = board[i][0];
-			if (first.equals("_")) {
-				continue;
-			}
-			boolean rowComplete = true;
-			for (int j = 1; j < cols; j++) {
-				if (!board[i][j].equals(first)) {
-					rowComplete = false;
-					break;
-				}
-			}
-			if (rowComplete) {
-				return first;
+			String rowWinner = winnerOfRow(i);
+			if (!rowWinner.equals("_")) {
+				return rowWinner;
 			}
 		}
 		return "_";
+	}
+
+	// returns the mark filling row i, or "_" if the row is empty/mixed
+	private String winnerOfRow(int i) {
+		String first = board[i][0];
+		if (first.equals("_")) {
+			return "_";
+		}
+		for (int j = 1; j < cols; j++) {
+			if (!board[i][j].equals(first)) {
+				return "_";
+			}
+		}
+		return first;
 	}
 }
