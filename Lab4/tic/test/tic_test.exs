@@ -2,7 +2,7 @@ defmodule TicTest do
   use ExUnit.Case
   doctest Tic
 
-  def clean(expected), do: String.trim(expected)
+  def clean(expected), do: expected |> String.trim() |> String.replace("\r\n", "\n")
 
   describe "new/2" do
     test "creates an empty board with X to play first" do
