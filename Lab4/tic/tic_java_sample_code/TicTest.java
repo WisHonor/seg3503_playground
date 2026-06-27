@@ -22,4 +22,14 @@ class TicTest {
 		assertEquals("X", board.cellAt(1, 1));
 	}
 
+	@Test
+	void turnAlternatesBetweenPlayers() {
+		Tic board = new Tic(3, 3);
+		assertEquals("X", board.currentPlayer());
+		board.place(0, 0);
+		assertEquals("O", board.currentPlayer());
+		board.place(0, 1);
+		assertEquals("X", board.currentPlayer());
+	}
+
 }
