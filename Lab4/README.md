@@ -56,6 +56,14 @@ Support commits:
 
 # Wissam Elmasry
 
+| Outline | Value |
+| --- | --- |
+| Course | SEG 3503 |
+| Date | Summer 2026 |
+| Student | Wissam Elmasry |
+| Professor | Mouhcine Guennoun |
+| TA | Mohamed Nefsi |
+
 My TDD work is implemented in **Java / JUnit 5**, built test-first on the
 provided sample at `Lab4/tic/tic_java_sample_code` (`Tic.java` + `TicTest.java`).
 
