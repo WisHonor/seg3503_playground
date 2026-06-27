@@ -23,7 +23,7 @@ defmodule Fizzbuzz do
             when is_integer(first) and first > 0 and is_integer(last) and last >= first
 
   def print_fizzbuzz() do
-    Enum.each(fizzbuzz(), & IO.puts(&1))
+    Enum.each(fizzbuzz(), &IO.puts(&1))
   end
 
   def fizzbuzz(), do: fizzbuzz(1, 100)

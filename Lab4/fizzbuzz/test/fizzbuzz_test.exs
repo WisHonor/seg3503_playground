@@ -4,7 +4,7 @@ defmodule FizzbuzzTest do
 
   describe "fizzbuzz/0" do
     test "fizzbuzz(1,100)" do
-    assert Fizzbuzz.fizzbuzz() == Fizzbuzz.fizzbuzz(1, 100)
+      assert Fizzbuzz.fizzbuzz() == Fizzbuzz.fizzbuzz(1, 100)
     end
   end
 
@@ -23,19 +23,17 @@ defmodule FizzbuzzTest do
       end
     end
 
-
     test "1 fizzbuzz" do
-      assert [1] == Fizzbuzz.fizzbuzz(1,1)
-      assert [2] == Fizzbuzz.fizzbuzz(2,2)
-      assert ["Fizz"] == Fizzbuzz.fizzbuzz(3,3)
-      assert ["Buzz"] == Fizzbuzz.fizzbuzz(5,5)
+      assert [1] == Fizzbuzz.fizzbuzz(1, 1)
+      assert [2] == Fizzbuzz.fizzbuzz(2, 2)
+      assert ["Fizz"] == Fizzbuzz.fizzbuzz(3, 3)
+      assert ["Buzz"] == Fizzbuzz.fizzbuzz(5, 5)
     end
 
     test "all fizzbuzz between n et m" do
-      assert [1,2,"Fizz",4,"Buzz"] == Fizzbuzz.fizzbuzz(1,5)
-      assert [14,"FizzBuzz",16] == Fizzbuzz.fizzbuzz(14,16)
+      assert [1, 2, "Fizz", 4, "Buzz"] == Fizzbuzz.fizzbuzz(1, 5)
+      assert [14, "FizzBuzz", 16] == Fizzbuzz.fizzbuzz(14, 16)
     end
-
   end
 
   describe "fizzbuzz/1" do
@@ -82,7 +80,5 @@ defmodule FizzbuzzTest do
       assert "FizzBuzz" == Fizzbuzz.fizzbuzz(45)
       assert "FizzBuzz" == Fizzbuzz.fizzbuzz(90)
     end
-
   end
-
 end
