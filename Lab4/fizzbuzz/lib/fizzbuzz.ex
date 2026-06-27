@@ -34,7 +34,13 @@ defmodule Fizzbuzz do
 
   def fizzbuzz(_), do: raise(ArgumentError, "number must be a positive integer")
 
-  def fizzbuzz(n, m), do: Enum.map(n..m, fn x -> fizzbuzz(x) end)
+  def fizzbuzz(n, m) when is_integer(n) and is_integer(m) and n > 0 and m >= n do
+    Enum.map(n..m, fn x -> fizzbuzz(x) end)
+  end
+
+  def fizzbuzz(_, _) do
+    raise ArgumentError, "range must use positive integers with start <= finish"
+  end
 
   defp multiple_of?(n, divisor), do: rem(n, divisor) == 0
 end
