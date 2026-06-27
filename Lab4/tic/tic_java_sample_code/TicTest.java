@@ -14,4 +14,12 @@ class TicTest {
 		assertEquals("_", board.cellAt(2, 2));
 	}
 
+	@Test
+	void placingMarkFillsCell() {
+		Tic board = new Tic(3, 3);
+		board.place(1, 1);
+		// X moves first, so the placed cell should now hold "X"
+		assertEquals("X", board.cellAt(1, 1));
+	}
+
 }
