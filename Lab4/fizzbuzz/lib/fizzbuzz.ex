@@ -25,9 +25,9 @@ defmodule Fizzbuzz do
 
   def fizzbuzz(n) when is_integer(n) and n > 0 do
     cond do
-      rem(n, 3) == 0 && rem(n, 5) == 0 -> "FizzBuzz"
-      rem(n, 3) == 0 -> "Fizz"
-      rem(n, 5) == 0 -> "Buzz"
+      multiple_of?(n, 3) && multiple_of?(n, 5) -> "FizzBuzz"
+      multiple_of?(n, 3) -> "Fizz"
+      multiple_of?(n, 5) -> "Buzz"
       :else -> n
     end
   end
@@ -36,4 +36,5 @@ defmodule Fizzbuzz do
 
   def fizzbuzz(n, m), do: Enum.map(n..m, fn x -> fizzbuzz(x) end)
 
+  defp multiple_of?(n, divisor), do: rem(n, divisor) == 0
 end
