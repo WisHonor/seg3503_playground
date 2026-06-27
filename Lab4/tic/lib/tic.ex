@@ -43,13 +43,15 @@ defmodule Tic do
   def draw?(%Tic{} = board) do
     board = with_cells(board)
 
-    is_nil(winner(board)) and Enum.all?(board.cells, fn cell -> cell != @empty end)
+    is_nil(winner(board)) and full?(board)
   end
 
   def status(%Tic{} = board) do
+    board = with_cells(board)
+
     case winner(board) do
       nil ->
-        if draw?(board), do: :draw, else: :playing
+        if full?(board), do: :draw, else: :playing
 
       mark ->
         {:winner, mark}
@@ -136,6 +138,8 @@ defmodule Tic do
       _ -> nil
     end
   end
+
+  defp full?(board), do: Enum.all?(board.cells, fn cell -> cell != @empty end)
 
   defp with_cells(%Tic{cells: nil} = board), do: %{board | cells: empty_cells(board)}
   defp with_cells(%Tic{} = board), do: board
