@@ -32,4 +32,14 @@ class TicTest {
 		assertEquals("X", board.currentPlayer());
 	}
 
+	@Test
+	void placingOnOccupiedCellIsRejected() {
+		Tic board = new Tic(3, 3);
+		board.place(0, 0); // X takes (0,0)
+		// O must not be able to overwrite an occupied cell
+		assertThrows(IllegalStateException.class, () -> board.place(0, 0));
+		// the rejected move must not consume O's turn
+		assertEquals("O", board.currentPlayer());
+	}
+
 }
