@@ -23,7 +23,7 @@ defmodule Fizzbuzz do
 
   def fizzbuzz(), do: fizzbuzz(1, 100)
 
-  def fizzbuzz(n) do
+  def fizzbuzz(n) when is_integer(n) and n > 0 do
     cond do
       rem(n, 3) == 0 && rem(n, 5) == 0 -> "FizzBuzz"
       rem(n, 3) == 0 -> "Fizz"
@@ -31,6 +31,8 @@ defmodule Fizzbuzz do
       :else -> n
     end
   end
+
+  def fizzbuzz(_), do: raise(ArgumentError, "number must be a positive integer")
 
   def fizzbuzz(n, m), do: Enum.map(n..m, fn x -> fizzbuzz(x) end)
 
