@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+
 public class Twitter {
 
   public String loadTweet()
@@ -18,7 +20,12 @@ public class Twitter {
 
   public boolean isMentionned(String name) {
     String tweet = loadTweet();
-    return tweet.contains("@" + name);
+    if (tweet == null || name == null) {
+      return false;
+    }
+
+    Pattern mention = Pattern.compile("@" + Pattern.quote(name) + "(?![A-Za-z0-9_])");
+    return mention.matcher(tweet).find();
   }
 
 }
