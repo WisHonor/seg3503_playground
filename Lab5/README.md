@@ -4,7 +4,7 @@
 | --- | --- |
 | Course | SEG 3503 |
 | Date | Summer 2026 |
-| Student | Alexandre Turgeon |
+| Students | Alexandre Turgeon, Wissam Elmasry |
 | Professor | Mouhcine Guennoun |
 | TA | Mohamed Nefsi |
 
