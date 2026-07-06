@@ -1,12 +1,12 @@
 # SEG3503 - Lab 5 : Stubs, Mocks, and Architecture
 
-| Outline | Value |
-| --- | --- |
-| Course | SEG 3503 |
-| Date | Summer 2026 |
-| Student | Alexandre Turgeon |
+| Outline   | Value             |
+| --------- | ----------------- |
+| Course    | SEG 3503          |
+| Date      | Summer 2026       |
+| Student   | Alexandre Turgeon |
 | Professor | Mouhcine Guennoun |
-| TA | Mohamed Nefsi |
+| TA        | Mohamed Nefsi     |
 
 This lab uses the provided `grades` and `twitter` starter projects to practise
 temporary stubs, mock collaborators, and small architectural choices that make
@@ -115,26 +115,26 @@ percentage =
 Scale:
 
 | Percentage | Letter | Numeric |
-| --- | --- | --- |
-| 90+ | A+ | 10 |
-| 85-89 | A | 10 |
-| 80-84 | A- | 9 |
-| 75-79 | B+ | 8 |
-| 70-74 | B | 7 |
-| 65-69 | B- | 6 |
-| 60-64 | C+ | 5 |
-| 55-59 | C | 4 |
-| 50-54 | D | 3 |
-| below 50 | F | 0 |
+| ---------- | ------ | ------- |
+| 90+        | A+     | 10      |
+| 85-89      | A      | 10      |
+| 80-84      | A-     | 9       |
+| 75-79      | B+     | 8       |
+| 70-74      | B      | 7       |
+| 65-69      | B-     | 6       |
+| 60-64      | C+     | 5       |
+| 55-59      | C      | 4       |
+| 50-54      | D      | 3       |
+| below 50   | F      | 0       |
 
 Worked example from the tests:
 
-| Component | Values | Result |
-| --- | --- | --- |
-| Homework | `80, 90, 100, blank` | `[80, 90, 100, 0]`, average `67.5` |
-| Labs | `60, 70, blank, 80, 90, 100` | `[60, 70, 0, 80, 90, 100]`, average `66.667` |
-| Midterm | `70` | `70.0` |
-| Final | `85` | `85.0` |
+| Component | Values                       | Result                                       |
+| --------- | ---------------------------- | -------------------------------------------- |
+| Homework  | `80, 90, 100, blank`         | `[80, 90, 100, 0]`, average `67.5`           |
+| Labs      | `60, 70, blank, 80, 90, 100` | `[60, 70, 0, 80, 90, 100]`, average `66.667` |
+| Midterm   | `70`                         | `70.0`                                       |
+| Final     | `85`                         | `85.0`                                       |
 
 ```text
 0.20*67.5 + 0.10*66.667 + 0.30*70 + 0.40*85 = 75.167
@@ -168,20 +168,20 @@ helper before the red bug tests were recorded.
 
 ### Mock Tests
 
-| Test | Mocked `loadTweet()` | Expected assertions |
-| --- | --- | --- |
-| `isMentionned_lookForAtSymbol` | `"hello @me"` twice | `me` true, `you` false |
-| `isMentionned_dontReturnSubstringMatches` | `"hello @meat"` twice | `me` false, `meat` true |
-| `isMentionned_superStringNotFound` | `"hello @me"` twice | `me` true, `meat` false |
-| `isMentionned_handleNull` | `null` twice | `me` false, `meat` false |
+| Test                                      | Mocked `loadTweet()`  | Expected assertions      |
+| ----------------------------------------- | --------------------- | ------------------------ |
+| `isMentionned_lookForAtSymbol`            | `"hello @me"` twice   | `me` true, `you` false   |
+| `isMentionned_dontReturnSubstringMatches` | `"hello @meat"` twice | `me` false, `meat` true  |
+| `isMentionned_superStringNotFound`        | `"hello @me"` twice   | `me` true, `meat` false  |
+| `isMentionned_handleNull`                 | `null` twice          | `me` false, `meat` false |
 
 ### Results
 
-| Stage | Command | Result |
-| --- | --- | --- |
+| Stage                  | Command          | Result                                                                                             |
+| ---------------------- | ---------------- | -------------------------------------------------------------------------------------------------- |
 | Starter Windows script | `.\bin\test.ps1` | Script compiled and ran; random `actual_call()` failed this run with `expected true but was false` |
-| Red mock tests | `.\bin\test.ps1` | 7 tests, 5 passed, 2 failed |
-| Green fix | `.\bin\test.ps1` | 7 tests, 7 passed, 0 failed |
+| Red mock tests         | `.\bin\test.ps1` | 7 tests, 5 passed, 2 failed                                                                        |
+| Green fix              | `.\bin\test.ps1` | 7 tests, 7 passed, 0 failed                                                                        |
 
 Red failures:
 
@@ -211,27 +211,27 @@ The Elixir `grades` calculator, the Java `twitter` mock tests, the
 `isMentionned` fix, and the initial documentation above were built by Alexandre
 Turgeon.
 
-| Step | Commit | Description |
-| --- | --- | --- |
-| 1 | `3d720a6` | Add Lab5 grades starter |
-| 2 | `b326eb4` | Add grades calculator stub |
-| 3 | `83eaa1d` | Implement grades calculator |
-| 4 | `a9b6c42` | Add Lab5 twitter starter |
-| 5 | `aee9ff2` | Add twitter mention mock tests |
-| 6 | `1a43957` | Fix twitter mention matching |
-| 7 | `327085d` | Document setup, observations, results, and commit map |
+| Step | Commit    | Description                                           |
+| ---- | --------- | ----------------------------------------------------- |
+| 1    | `3d720a6` | Add Lab5 grades starter                               |
+| 2    | `b326eb4` | Add grades calculator stub                            |
+| 3    | `83eaa1d` | Implement grades calculator                           |
+| 4    | `a9b6c42` | Add Lab5 twitter starter                              |
+| 5    | `aee9ff2` | Add twitter mention mock tests                        |
+| 6    | `1a43957` | Fix twitter mention matching                          |
+| 7    | `327085d` | Document setup, observations, results, and commit map |
 
 ---
 
 # Wissam Elmasry
 
-| Outline | Value |
-| --- | --- |
-| Course | SEG 3503 |
-| Date | Summer 2026 |
-| Student | Wissam Elmasry |
+| Outline   | Value             |
+| --------- | ----------------- |
+| Course    | SEG 3503          |
+| Date      | Summer 2026       |
+| Student   | Wissam Elmasry    |
 | Professor | Mouhcine Guennoun |
-| TA | Mohamed Nefsi |
+| TA        | Mohamed Nefsi     |
 
 I reviewed the `grades` and `twitter` work and aligned the grade calculator with
 the University of Ottawa scale specified for this lab:
@@ -247,22 +247,16 @@ the University of Ottawa scale specified for this lab:
 I updated `test/grades/calculator_test.exs` and `calculator_check.exs` to the
 new expected values and verified both suites:
 
-| Suite | Command | Result |
-| --- | --- | --- |
+| Suite               | Command                       | Result              |
+| ------------------- | ----------------------------- | ------------------- |
 | Grades (standalone) | `elixir calculator_check.exs` | 2 tests, 0 failures |
-| Twitter (Java) | `bin\test.bat` | 7 tests, 0 failures |
+| Twitter (Java)      | `bin\test.bat`                | 7 tests, 0 failures |
 
 The worked example now yields `75.17`, `B+`, numeric `8`; the defensive case
 (only a single `100` homework, everything else blank/invalid) yields `5.0`, `F`,
 numeric `0`.
 
-| Commit | Description |
-| --- | --- |
+| Commit    | Description                                                                                              |
+| --------- | -------------------------------------------------------------------------------------------------------- |
 | `24abb0e` | Align grades calculator with the lab's uOttawa scale (weights, scale, blank-as-0), update tests and docs |
-| `52e3bab` | Add Wissam Elmasry to the Lab5 README |
-
-## Submission Note
-
-The repo is already shared through `WisHonor/seg3503_playground`. The
-BrightSpace submission should reference that repository and this `Lab5`
-directory.
+| `52e3bab` | Add Wissam Elmasry to the Lab5 README                                                                    |
