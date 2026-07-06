@@ -218,7 +218,7 @@ Each code commit below is shown with a screenshot of what changed in that commit
 | ---- | --------- | ----------------------------------------------------- | ------------ |
 | 1    | `3d720a6` | Add Lab5 grades starter                               | Provided Phoenix starter files (no code screenshot). |
 | 2    | `b326eb4` | Add grades calculator stub                            | ![Stub calculator](grades/screenshots/b326eb4-stub.png) |
-| 3    | `83eaa1d` | Implement grades calculator                           | ![Real calculator](grades/screenshots/83eaa1d-implement.png) |
+| 3    | `83eaa1d` | Implement grades calculator                           | ![Real calculator 1](grades/screenshots/83eaa1d-implement-1.png)<br>![Real calculator 2](grades/screenshots/83eaa1d-implement-2.png)<br>![Real calculator 3](grades/screenshots/83eaa1d-implement-3.png) |
 | 4    | `a9b6c42` | Add Lab5 twitter starter                              | Provided Java starter files (no code screenshot). |
 | 5    | `aee9ff2` | Add twitter mention mock tests                        | ![Mock tests](twitter/screenshots/aee9ff2-mock-tests.png) |
 | 6    | `1a43957` | Fix twitter mention matching                          | ![isMentionned fix](twitter/screenshots/1a43957-fix.png) |
@@ -265,5 +265,5 @@ sections above (`calculator_check.exs` â†’ 2 tests, 0 failures; `bin\test.ps1` â
 
 | Commit    | Description                                                                                              | What changed |
 | --------- | -------------------------------------------------------------------------------------------------------- | ------------ |
-| `24abb0e` | Align grades calculator with the lab's uOttawa scale (weights, scale, blank-as-0), update tests and docs | ![Align scale](grades/screenshots/24abb0e-align-scale.png) |
+| `24abb0e` | Align grades calculator with the lab's uOttawa scale (weights, scale, blank-as-0), update tests and docs | ![Align scale 1](grades/screenshots/24abb0e-align-scale-1.png)<br>![Align scale 2](grades/screenshots/24abb0e-align-scale-2.png)<br>![Align scale 3](grades/screenshots/24abb0e-align-scale-3.png) |
 | `52e3bab` | Add Wissam Elmasry to the Lab5 README                                                                    | README only (no code screenshot). |
