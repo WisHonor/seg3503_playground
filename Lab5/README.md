@@ -4,7 +4,7 @@
 | --- | --- |
 | Course | SEG 3503 |
 | Date | Summer 2026 |
-| Students | Alexandre Turgeon, Wissam Elmasry |
+| Student | Alexandre Turgeon |
 | Professor | Mouhcine Guennoun |
 | TA | Mohamed Nefsi |
 
@@ -196,7 +196,33 @@ The null guard handles missing tweets. `Pattern.quote(name)` avoids treating a
 name as regex syntax, and the negative lookahead prevents `@meat` from matching
 the requested username `me`.
 
-## Wissam Elmasry — Review & Verification
+## Alexandre Turgeon — Commit Map
+
+The Elixir `grades` calculator, the Java `twitter` mock tests, the
+`isMentionned` fix, and the initial documentation above were built by Alexandre
+Turgeon.
+
+| Step | Commit | Description |
+| --- | --- | --- |
+| 1 | `3d720a6` | Add Lab5 grades starter |
+| 2 | `b326eb4` | Add grades calculator stub |
+| 3 | `83eaa1d` | Implement grades calculator |
+| 4 | `a9b6c42` | Add Lab5 twitter starter |
+| 5 | `aee9ff2` | Add twitter mention mock tests |
+| 6 | `1a43957` | Fix twitter mention matching |
+| 7 | `327085d` | Document setup, observations, results, and commit map |
+
+---
+
+# Wissam Elmasry
+
+| Outline | Value |
+| --- | --- |
+| Course | SEG 3503 |
+| Date | Summer 2026 |
+| Student | Wissam Elmasry |
+| Professor | Mouhcine Guennoun |
+| TA | Mohamed Nefsi |
 
 I reviewed the `grades` and `twitter` work and aligned the grade calculator with
 the University of Ottawa scale specified for this lab:
@@ -221,18 +247,10 @@ The worked example now yields `75.17`, `B+`, numeric `8`; the defensive case
 (only a single `100` homework, everything else blank/invalid) yields `5.0`, `F`,
 numeric `0`.
 
-## Commit Map
-
-| Step | Commit | Description |
-| --- | --- | --- |
-| 1 | `3d720a6` | Add Lab5 grades starter |
-| 2 | `b326eb4` | Add grades calculator stub |
-| 3 | `83eaa1d` | Implement grades calculator |
-| 4 | `a9b6c42` | Add Lab5 twitter starter |
-| 5 | `aee9ff2` | Add twitter mention mock tests |
-| 6 | `1a43957` | Fix twitter mention matching |
-| 7 | `327085d` | Document setup, observations, results, and commit map |
-| 8 | current commit | Align grades calculator with the lab's uOttawa scale (Wissam) |
+| Commit | Description |
+| --- | --- |
+| `24abb0e` | Align grades calculator with the lab's uOttawa scale (weights, scale, blank-as-0), update tests and docs |
+| `52e3bab` | Add Wissam Elmasry to the Lab5 README |
 
 ## Submission Note
 
