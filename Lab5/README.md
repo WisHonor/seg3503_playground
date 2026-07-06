@@ -158,6 +158,22 @@ elixir calculator_check.exs
 The same assertions live in `test/grades/calculator_test.exs` and run under
 `mix test` once Hex and the Phoenix deps are installed.
 
+### Screenshots
+
+Stub active — the UI returns a constant `A+` / `10` / `95.0` for any entered
+marks:
+
+![Grades stub active](grades/screenshots/stub-ui.png)
+
+Real calculation — the UI computes the weighted percentage, letter, and numeric
+grade from the entered marks:
+
+![Grades real calculation](grades/screenshots/real-ui.png)
+
+`elixir calculator_check.exs` passing (`2 tests, 0 failures`):
+
+![calculator_check output](grades/screenshots/calculator-check.png)
+
 ## Twitter
 
 The Twitter starter has a slow/random `loadTweet()` collaborator. The mock tests
@@ -182,6 +198,15 @@ helper before the red bug tests were recorded.
 | Starter Windows script | `.\bin\test.ps1` | Script compiled and ran; random `actual_call()` failed this run with `expected true but was false` |
 | Red mock tests         | `.\bin\test.ps1` | 7 tests, 5 passed, 2 failed                                                                        |
 | Green fix              | `.\bin\test.ps1` | 7 tests, 7 passed, 0 failed                                                                        |
+
+Red run — 2 tests failing before the `isMentionned` fix
+(`isMentionned_dontReturnSubstringMatches` and `isMentionned_handleNull`):
+
+![Twitter red run](twitter/screenshots/test-red.png)
+
+Green run — all 7 tests passing after the fix:
+
+![Twitter green run](twitter/screenshots/test-green.png)
 
 Red failures:
 
@@ -255,6 +280,12 @@ new expected values and verified both suites:
 The worked example now yields `75.17`, `B+`, numeric `8`; the defensive case
 (only a single `100` homework, everything else blank/invalid) yields `5.0`, `F`,
 numeric `0`.
+
+Verification runs after my changes:
+
+![Grades check after changes](grades/screenshots/calculator-check.png)
+
+![Twitter tests after changes](twitter/screenshots/test-green.png)
 
 | Commit    | Description                                                                                              |
 | --------- | -------------------------------------------------------------------------------------------------------- |
