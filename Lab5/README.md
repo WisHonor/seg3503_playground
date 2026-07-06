@@ -281,11 +281,9 @@ The worked example now yields `75.17`, `B+`, numeric `8`; the defensive case
 (only a single `100` homework, everything else blank/invalid) yields `5.0`, `F`,
 numeric `0`.
 
-Verification runs after my changes:
-
-![Grades check after changes](grades/screenshots/calculator-check.png)
-
-![Twitter tests after changes](twitter/screenshots/test-green.png)
+Verification runs after my changes are shown in the **Grades** and **Twitter**
+sections above (`calculator_check.exs` → 2 tests, 0 failures; `bin\test.ps1` →
+7 tests, 0 failures).
 
 | Commit    | Description                                                                                              |
 | --------- | -------------------------------------------------------------------------------------------------------- |
