@@ -27,18 +27,24 @@ The zip metadata directories/files (`__MACOSX`, `.DS_Store`) were removed, and
 the redundant `twitter/lib/easymock-4.3-bundle.zip` was removed while keeping
 `twitter/lib/easymock-4.3.jar`.
 
-The `grades` project is a legacy Phoenix 1.5 / LiveView 0.15 project. On this
-machine, `mix deps.get`, `mix compile`, `mix format --check-formatted`, and
-`elixir calculator_check.exs` all stopped immediately with:
+The `grades` project is a legacy Phoenix 1.5 / LiveView 0.15 project. The full
+`mix test` / `mix compile` tasks require fetching the Phoenix dependencies with
+Hex, which is not installed in this environment, so those tasks stop with
+`Could not find an SCM for dependency :phoenix`.
 
-```text
-Cannot find erlexec.dll
+For that reason, the grade calculation is kept in the pure module
+`Grades.Calculator` and is verified with the standalone `calculator_check.exs`
+runner, which uses only ExUnit and does **not** boot Phoenix or need any
+dependencies. On Erlang/OTP 28 + Elixir 1.19 this runner passes both tests:
+
+```powershell
+cd Lab5/grades
+elixir calculator_check.exs
+# => 2 tests, 0 failures
 ```
 
-For that reason, the grade calculation was kept in the pure module
-`Grades.Calculator`, with both a normal ExUnit test and a standalone
-`calculator_check.exs` runner that can be executed on a working Elixir/Erlang
-installation without booting Phoenix.
+Once Hex and the Phoenix deps are available (`mix local.hex --force` then
+`mix deps.get`), the same assertions also run under `mix test`.
 
 The `twitter` project has Windows launchers in addition to the original bash
 scripts:
@@ -141,13 +147,16 @@ Verification files:
 - `grades/test/grades/calculator_test.exs`
 - `grades/calculator_check.exs`
 
-Commands for a working Elixir installation:
+Verification command (no dependencies required):
 
 ```powershell
 cd Lab5/grades
-mix test
 elixir calculator_check.exs
+# => 2 tests, 0 failures
 ```
+
+The same assertions live in `test/grades/calculator_test.exs` and run under
+`mix test` once Hex and the Phoenix deps are installed.
 
 ## Twitter
 
