@@ -11,8 +11,8 @@ defmodule Grades.CalculatorTest do
       final: "85"
     }
 
-    assert_in_delta Calculator.percentage_grade(grades), 81.75, 0.001
-    assert Calculator.letter_grade(grades) == "A-"
+    assert_in_delta Calculator.percentage_grade(grades), 75.1667, 0.001
+    assert Calculator.letter_grade(grades) == "B+"
     assert Calculator.numeric_grade(grades) == 8
   end
 
@@ -24,7 +24,7 @@ defmodule Grades.CalculatorTest do
       final: "not a number"
     }
 
-    assert_in_delta Calculator.percentage_grade(grades), 10.0, 0.001
+    assert_in_delta Calculator.percentage_grade(grades), 5.0, 0.001
     assert Calculator.letter_grade(grades) == "F"
     assert Calculator.numeric_grade(grades) == 0
   end

@@ -89,8 +89,12 @@ The real calculator expects the map built by `GradesWeb.PageLive`:
 }
 ```
 
-List averages ignore blank fields. Nonblank invalid entries parse as `0.0`.
-Blank or invalid midterm/final values also parse as `0.0`.
+Every slot counts: blank/`nil` entries are treated as `0.0` and still divide
+into the list average, so "5% each" holds for the four homeworks
+(`0.20 * sum / 4`). Nonblank invalid entries (e.g. `"bad"`) also parse as `0.0`,
+as do blank or invalid midterm/final values.
+
+Weights: homework 20% (5% each of 4), labs 10% (avg), midterm 30%, final 40%.
 
 Formula:
 
@@ -98,8 +102,8 @@ Formula:
 percentage =
   0.20 * avg(homework) +
   0.10 * avg(labs) +
-  0.25 * midterm +
-  0.45 * final
+  0.30 * midterm +
+  0.40 * final
 ```
 
 Scale:
@@ -107,31 +111,30 @@ Scale:
 | Percentage | Letter | Numeric |
 | --- | --- | --- |
 | 90+ | A+ | 10 |
-| 85-89 | A | 9 |
-| 80-84 | A- | 8 |
-| 75-79 | B+ | 7 |
-| 70-74 | B | 6 |
-| 65-69 | C+ | 5 |
-| 60-64 | C | 4 |
-| 55-59 | D+ | 3 |
-| 50-54 | D | 2 |
-| 40-49 | E | 1 |
-| below 40 | F | 0 |
+| 85-89 | A | 10 |
+| 80-84 | A- | 9 |
+| 75-79 | B+ | 8 |
+| 70-74 | B | 7 |
+| 65-69 | B- | 6 |
+| 60-64 | C+ | 5 |
+| 55-59 | C | 4 |
+| 50-54 | D | 3 |
+| below 50 | F | 0 |
 
 Worked example from the tests:
 
 | Component | Values | Result |
 | --- | --- | --- |
-| Homework | `80, 90, 100, blank` | average `90.0` |
-| Labs | `60, 70, blank, 80, 90, 100` | average `80.0` |
+| Homework | `80, 90, 100, blank` | `[80, 90, 100, 0]`, average `67.5` |
+| Labs | `60, 70, blank, 80, 90, 100` | `[60, 70, 0, 80, 90, 100]`, average `66.667` |
 | Midterm | `70` | `70.0` |
 | Final | `85` | `85.0` |
 
 ```text
-0.20*90 + 0.10*80 + 0.25*70 + 0.45*85 = 81.75
+0.20*67.5 + 0.10*66.667 + 0.30*70 + 0.40*85 = 75.167
 ```
 
-Expected result: `81.75`, `A-`, numeric grade `8`.
+Expected result: `75.17`, `B+`, numeric grade `8`.
 
 Verification files:
 
@@ -193,6 +196,31 @@ The null guard handles missing tweets. `Pattern.quote(name)` avoids treating a
 name as regex syntax, and the negative lookahead prevents `@meat` from matching
 the requested username `me`.
 
+## Wissam Elmasry — Review & Verification
+
+I reviewed the `grades` and `twitter` work and aligned the grade calculator with
+the University of Ottawa scale specified for this lab:
+
+- **Weights** were changed to homework 20% (5% each), labs 10%, midterm 30%,
+  final 40% (previously 25% / 45% for midterm/final).
+- **Scale / numeric points** were changed to A+/A = 10, A- = 9, B+ = 8, B = 7,
+  B- = 6, C+ = 5, C = 4, D = 3, and F = 0 below 50%, replacing the earlier
+  A+..E scale.
+- **Blank handling** now treats empty strings and `nil` as `0` while still
+  dividing across every slot, so a blank homework counts as a real zero.
+
+I updated `test/grades/calculator_test.exs` and `calculator_check.exs` to the
+new expected values and verified both suites:
+
+| Suite | Command | Result |
+| --- | --- | --- |
+| Grades (standalone) | `elixir calculator_check.exs` | 2 tests, 0 failures |
+| Twitter (Java) | `bin\test.bat` | 7 tests, 0 failures |
+
+The worked example now yields `75.17`, `B+`, numeric `8`; the defensive case
+(only a single `100` homework, everything else blank/invalid) yields `5.0`, `F`,
+numeric `0`.
+
 ## Commit Map
 
 | Step | Commit | Description |
@@ -203,7 +231,8 @@ the requested username `me`.
 | 4 | `a9b6c42` | Add Lab5 twitter starter |
 | 5 | `aee9ff2` | Add twitter mention mock tests |
 | 6 | `1a43957` | Fix twitter mention matching |
-| 7 | current README commit | Document setup, observations, results, and commit map |
+| 7 | `327085d` | Document setup, observations, results, and commit map |
+| 8 | current commit | Align grades calculator with the lab's uOttawa scale (Wissam) |
 
 ## Submission Note
 
