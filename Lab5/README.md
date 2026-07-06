@@ -158,22 +158,6 @@ elixir calculator_check.exs
 The same assertions live in `test/grades/calculator_test.exs` and run under
 `mix test` once Hex and the Phoenix deps are installed.
 
-### Screenshots
-
-Stub active — the UI returns a constant `A+` / `10` / `95.0` for any entered
-marks:
-
-![Grades stub active](grades/screenshots/stub-ui.png)
-
-Real calculation — the UI computes the weighted percentage, letter, and numeric
-grade from the entered marks:
-
-![Grades real calculation](grades/screenshots/real-ui.png)
-
-`elixir calculator_check.exs` passing (`2 tests, 0 failures`):
-
-![calculator_check output](grades/screenshots/calculator-check.png)
-
 ## Twitter
 
 The Twitter starter has a slow/random `loadTweet()` collaborator. The mock tests
@@ -198,15 +182,6 @@ helper before the red bug tests were recorded.
 | Starter Windows script | `.\bin\test.ps1` | Script compiled and ran; random `actual_call()` failed this run with `expected true but was false` |
 | Red mock tests         | `.\bin\test.ps1` | 7 tests, 5 passed, 2 failed                                                                        |
 | Green fix              | `.\bin\test.ps1` | 7 tests, 7 passed, 0 failed                                                                        |
-
-Red run — 2 tests failing before the `isMentionned` fix
-(`isMentionned_dontReturnSubstringMatches` and `isMentionned_handleNull`):
-
-![Twitter red run](twitter/screenshots/test-red.png)
-
-Green run — all 7 tests passing after the fix:
-
-![Twitter green run](twitter/screenshots/test-green.png)
 
 Red failures:
 
@@ -236,15 +211,18 @@ The Elixir `grades` calculator, the Java `twitter` mock tests, the
 `isMentionned` fix, and the initial documentation above were built by Alexandre
 Turgeon.
 
-| Step | Commit    | Description                                           |
-| ---- | --------- | ----------------------------------------------------- |
-| 1    | `3d720a6` | Add Lab5 grades starter                               |
-| 2    | `b326eb4` | Add grades calculator stub                            |
-| 3    | `83eaa1d` | Implement grades calculator                           |
-| 4    | `a9b6c42` | Add Lab5 twitter starter                              |
-| 5    | `aee9ff2` | Add twitter mention mock tests                        |
-| 6    | `1a43957` | Fix twitter mention matching                          |
-| 7    | `327085d` | Document setup, observations, results, and commit map |
+Each code commit below is shown with a screenshot of what changed in that commit
+(`git show <hash>`).
+
+| Step | Commit    | Description                                           | What changed |
+| ---- | --------- | ----------------------------------------------------- | ------------ |
+| 1    | `3d720a6` | Add Lab5 grades starter                               | Provided Phoenix starter files (no code screenshot). |
+| 2    | `b326eb4` | Add grades calculator stub                            | ![Stub calculator](grades/screenshots/b326eb4-stub.png) |
+| 3    | `83eaa1d` | Implement grades calculator                           | ![Real calculator](grades/screenshots/83eaa1d-implement.png) |
+| 4    | `a9b6c42` | Add Lab5 twitter starter                              | Provided Java starter files (no code screenshot). |
+| 5    | `aee9ff2` | Add twitter mention mock tests                        | ![Mock tests](twitter/screenshots/aee9ff2-mock-tests.png) |
+| 6    | `1a43957` | Fix twitter mention matching                          | ![isMentionned fix](twitter/screenshots/1a43957-fix.png) |
+| 7    | `327085d` | Document setup, observations, results, and commit map | README only (no code screenshot). |
 
 ---
 
@@ -285,7 +263,7 @@ Verification runs after my changes are shown in the **Grades** and **Twitter**
 sections above (`calculator_check.exs` → 2 tests, 0 failures; `bin\test.ps1` →
 7 tests, 0 failures).
 
-| Commit    | Description                                                                                              |
-| --------- | -------------------------------------------------------------------------------------------------------- |
-| `24abb0e` | Align grades calculator with the lab's uOttawa scale (weights, scale, blank-as-0), update tests and docs |
-| `52e3bab` | Add Wissam Elmasry to the Lab5 README                                                                    |
+| Commit    | Description                                                                                              | What changed |
+| --------- | -------------------------------------------------------------------------------------------------------- | ------------ |
+| `24abb0e` | Align grades calculator with the lab's uOttawa scale (weights, scale, blank-as-0), update tests and docs | ![Align scale](grades/screenshots/24abb0e-align-scale.png) |
+| `52e3bab` | Add Wissam Elmasry to the Lab5 README                                                                    | README only (no code screenshot). |
