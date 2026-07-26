@@ -355,20 +355,3 @@ back to `http://localhost:8080/` found an empty cart. Since the menu fragment (a
 therefore the category search form) is part of every page, `OrderAcceptanceTest`
 returns to the catalogue through the menu instead of through `/`, and the cart
 survives.
-
-## Commit map
-
-| Step | Description                                                                              |
-| ---- | ---------------------------------------------------------------------------------------- |
-| 1    | Add Lab6 BookstoreApp starter (extracted, cruft removed)                                 |
-| 2    | Bump WebDriverManager to 5.9.2; add `ServerControl` + wait-for-ready                     |
-| 3    | Add `CategorySearchTest` (F2 search-by-category tests)                                   |
-| 4    | Add screenshots, captured test output, and this README                                   |
-| 5    | Fix the launcher jar; add `OrderAcceptanceTest`, `AdminAcceptanceTest` and `Screenshots` |
-
-## Submission note
-
-The repository is shared through `WisHonor/seg3503_playground`; the BrightSpace
-submission should reference that repository and this `Lab6` directory. Build
-output (`BookstoreApp/target/`) is git-ignored, while `bookstore5.jar` is kept
-because the application and the tests both depend on it.
