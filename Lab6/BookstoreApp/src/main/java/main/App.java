@@ -12,6 +12,11 @@ public class App
     {
         try {
         	ProcessBuilder pb = new ProcessBuilder("java", "-jar", "bookstore5.jar");
+        	// Send the server's log to this console. Left on the default pipe,
+        	// nothing ever drains it: the pipe fills up during Spring Boot's
+        	// startup and the server stalls before it binds port 8080.
+        	pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+        	pb.redirectError(ProcessBuilder.Redirect.INHERIT);
         	Process p = pb.start();
             System.out.println("Press Enter to stop server");
             // wait for Enter to terminate

@@ -3,17 +3,10 @@ package selenium;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -47,6 +40,7 @@ class CategorySearchTest {
     WebDriverManager.chromedriver().setup();
     driver = new ChromeDriver();
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    driver.manage().window().maximize();
     driver.get("http://localhost:8080/");
     // wait to make sure Selenium is done loading the page
     WebDriverWait wait = new WebDriverWait(driver, 60);
@@ -129,14 +123,6 @@ class CategorySearchTest {
 
   /** Saves a screenshot of the current page into the submission assets folder. */
   private void takeScreenshot(String fileName) {
-    try {
-      Path dir = Paths.get(System.getProperty("screenshot.dir", "../assets"));
-      Files.createDirectories(dir);
-      File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-      Files.copy(src.toPath(), dir.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
-    } catch (Exception e) {
-      // Screenshots are a submission aid; never fail the test because of them.
-      System.err.println("Could not save screenshot " + fileName + ": " + e.getMessage());
-    }
+    Screenshots.save(driver, fileName);
   }
 }

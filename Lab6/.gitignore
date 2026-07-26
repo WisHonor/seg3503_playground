@@ -1,0 +1,16 @@
+# Maven build output
+BookstoreApp/target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Browser drivers (WebDriverManager downloads these at runtime)
+chromedriver*
+geckodriver*
+msedgedriver*
+
+# OS cruft
+.DS_Store
+Thumbs.db
